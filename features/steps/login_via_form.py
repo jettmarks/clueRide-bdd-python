@@ -1,5 +1,7 @@
 from behave import *
 
+from features.steps.login_form import is_logged_in, login
+
 use_step_matcher("re")
 
 
@@ -19,3 +21,11 @@ def step_impl(context):
     print("Opened Page: " + context.browser.title)
     assert context.browser.title == "info"
 
+
+@step("Valid Token has been set via login")
+def step_impl(context):
+    """
+    :type context: behave.runner.Context
+    """
+    if not is_logged_in(context.browser):
+        login(context)

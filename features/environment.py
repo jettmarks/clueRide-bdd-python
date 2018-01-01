@@ -1,17 +1,16 @@
 from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
-from selenium.webdriver import DesiredCapabilities
 
 
 def before_all(context):
 
-    caps = DesiredCapabilities.CHROME
-    caps['loggingPrefs'] = {'performance': 'ALL'}
+    # caps = DesiredCapabilities.CHROME
+    # caps['loggingPrefs'] = {'performance': 'ALL'}
 
     try:
         context.browser = webdriver.Chrome(
             executable_path="/opt/chromedriver",
-            desired_capabilities=caps,
+            # desired_capabilities=caps,
             service_args=["--verbose", "--log-path=/tmp/selenium/chrome.log"]
         )
     except WebDriverException:

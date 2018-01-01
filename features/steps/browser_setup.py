@@ -1,3 +1,4 @@
+import time
 from behave import *
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -44,17 +45,13 @@ def step_impl(context):
         )
     finally:
         print("Did not find map\n")
-        pass
 
 
-@step("Valid Token has been checked")
-def step_impl(context):
+@step('I wait "{time_interval}" seconds')
+def step_impl(context, time_interval):
     """
+    :param time_interval: Time to wait in seconds
     :type context: behave.runner.Context
     """
-    assert context.config.userdata["test_token"], "The config parameter `test_token` needs to be defined"
-    # print("What we got: ", context.config.userdata["test_token"], "\n")
-    expected = context.config.userdata["test_token"]
-    actual = context.browser.execute_script( """return localStorage.getItem("_ionicstorage/_ionickv/token.key");""" )
+    time.sleep(int(time_interval))
 
-    assert actual == expected, "Set token doesn't match read token"
