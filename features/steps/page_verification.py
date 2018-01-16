@@ -1,6 +1,7 @@
 import time
 from behave import *
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -53,3 +54,11 @@ def step_impl(context, badge_name):
     except NoSuchElementException:
         print("No element found")
 
+
+@when('I wait for page with "{id_text}" ID')
+def step_impl(context, id_text):
+    """
+    :param id_text: Text of the ID element expected.
+    :type context: behave.runner.Context
+    """
+    wait_for_element_load(context.browser, By.ID, id_text)
