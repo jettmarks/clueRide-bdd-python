@@ -1,8 +1,16 @@
-import time
 from behave import *
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
+
+
+def open_application(context):
+    """
+    Shared function for opening the app.
+    :param context:
+    :return:
+    """
+    context.browser.get("http://localhost:8100")
 
 
 @given("first access for a device")
@@ -18,7 +26,7 @@ def step_impl(context):
     """
     :type context: behave.runner.Context
     """
-    context.browser.get("http://localhost:8100")
+    open_application(context)
 
 
 @step("Valid Token has been set")
@@ -47,11 +55,5 @@ def step_impl(context):
         print("Did not find map\n")
 
 
-@step('I wait "{time_interval}" seconds')
-def step_impl(context, time_interval):
-    """
-    :param time_interval: Time to wait in seconds
-    :type context: behave.runner.Context
-    """
-    time.sleep(int(time_interval))
+
 
