@@ -55,5 +55,13 @@ def step_impl(context):
         print("Did not find map\n")
 
 
-
-
+@given("Registered Device")
+def step_impl(context):
+    """
+    This stuffs a set of valid tokens into storage on a "new" device.
+    This simulates a device which had been registered in the past.
+    :type context: behave.runner.Context
+    """
+    open_application(context)
+    script = """localStorage.setItem('expires_at',JSON.stringify((86400 * 1000) + new Date().getTime()));"""
+    context.browser.execute_script(script)
