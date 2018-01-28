@@ -7,10 +7,16 @@ use_step_matcher("parse")
 def elements_child_contains_matching_text(element, text):
     """
     Returns true if the given element's child wraps the given text.
-    :param element: parent element.
+    The Text can either be part of the element itself or wrapped in a
+    child <span> element -- both are checked to cover alternate
+    implementations of the ion-button.
+    :param element: which may be parent element for a span with the text.
     :param text: Text to be matched (case insensitive contains).
-    :return: true if the child's text matches.
+    :return: true if the text matches either the element or its span child.
     """
+    if (str.upper(text)) in str.upper(element.text):
+        return True
+
     try:
         child_element = element.find_element_by_tag_name("span")
 
@@ -34,7 +40,7 @@ def find_button_by_name(context, button_name):
 
     match_list = [element for element in button_list if elements_child_contains_matching_text(element, button_name)]
     if len(match_list) == 0:
-        raise Exception("No matching Button Found")
+        raise Exception("No matching Button Found (" + button_name + ")")
 
     return match_list
 

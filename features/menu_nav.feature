@@ -27,3 +27,21 @@ Feature: Navigate the Menu
       And Application has been opened
      When I select "Badges" menu item
      Then I see the "Badges" page
+
+#  Scenario: From Team, reach the Outing Page
+#    Given Registered Device
+#      And Application has been opened
+#     When I select "Team" menu item
+#      And I see the "Team" page
+#      And I wait "1" seconds
+#      And I select "Outing" menu item
+#     Then I see the "Outing" page
+#
+#  Scenario: From Outing, reach the Badges Page
+#    Given Registered Device
+#      And Application has been opened
+#     When I select "Outing" menu item
+#      And I see the "Outing" page
+#      And I wait "1" seconds
+#      And I select "Badges" menu item
+#     Then I see the "Badges" page

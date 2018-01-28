@@ -18,11 +18,11 @@ temp_profile = {
 }
 
 
-@when('I click the "{link_text}" link')
-def step_impl(context, link_text):
+def find_target_link(context, link_text):
     """
-    :param link_text: What the user sees as the text of the Link.
-    :type context: behave.runner.Context
+    :param context:
+    :param link_text:
+    :return:
     """
     try:
         target_element = context.browser.find_element_by_partial_link_text(link_text)
@@ -30,4 +30,22 @@ def step_impl(context, link_text):
     except NoSuchElementException:
         raise
 
-    target_element.click()
+    return target_element
+
+
+@when('I click the "{link_text}" link')
+def step_impl(context, link_text):
+    """
+    :type context: behave.runner.Context
+    :param link_text: What the user sees as the text of the Link.
+    """
+    find_target_link(context, link_text).click()
+
+
+@step('I see a link to "{link_text}"')
+def step_impl(context, link_text):
+    """
+    :type context: behave.runner.Context
+    :param link_text: What the user sees as the text of the Link.
+    """
+    find_target_link(context, link_text)
