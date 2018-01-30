@@ -17,4 +17,3 @@ Feature: Player Home Page
       And I see the "Begin Game" button
 
 
-  Scenario: View Outing details via
