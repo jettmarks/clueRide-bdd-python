@@ -28,6 +28,12 @@ Feature: Navigate the Menu
      When I select "Badges" menu item
      Then I see the "Badges" page
 
+  Scenario: From Menu, reach the Play Game Page
+    Given Registered Device
+      And Application has been opened
+     When I select "Play Game" menu item
+     Then I see the "Rolling" page
+
 #  Scenario: From Team, reach the Outing Page
 #    Given Registered Device
 #      And Application has been opened
