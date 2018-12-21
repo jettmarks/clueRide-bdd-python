@@ -3,7 +3,7 @@ from selenium.common.exceptions import WebDriverException
 
 
 def before_all(context):
-    LOG_PATH = "/tmp/selenium/chrome.log"
+    LOG_PATH = "/tmp/selenium-chrome.log"
 
     # caps = DesiredCapabilities.CHROME
     # caps['loggingPrefs'] = {'performance': 'ALL'}

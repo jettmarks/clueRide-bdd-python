@@ -8,12 +8,22 @@ from features.steps.page_verification import wait_for_element_load
 use_step_matcher("parse")
 
 
-def open_menu(browser):
+def find_menu(browser):
+    """
+    Checks that we have a menu element within our page, and if so,
+    returns that element; otherwise, fail the test.
+    :param browser:
+    :return:
+    """
     try:
         menu_element = browser.find_element_by_xpath("//button[@menutoggle]")
     except NoSuchElementException:
         assert False, "Unable to find the Menu to open"
+    return menu_element
 
+
+def open_menu(browser):
+    menu_element = find_menu(browser)
     menu_element.click()
     time.sleep(.1)
 
@@ -107,3 +117,11 @@ def step_impl(context):
     """
     context.browser.execute_script("""location.reload()""")
     wait_for_map_loaded(context)
+
+
+@then("I see the page menu")
+def step_impl(context):
+    """
+    :type context: behave.runner.Context
+    """
+    find_menu(context.browser)

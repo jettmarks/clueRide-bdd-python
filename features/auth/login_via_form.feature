@@ -1,4 +1,6 @@
 # Created by jett at 9/17/17
+# This Feature is deprecated in favor of registering the application.
+#
 Feature: Login via Form
   As an unauthenticated user with an existing account
   I want to supply my credentials
