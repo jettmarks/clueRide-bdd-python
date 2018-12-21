@@ -9,7 +9,8 @@ def step_impl(context):
     """
     :type context: behave.runner.Context
     """
-    script = """localStorage.removeItem('expires_at');"""
+    script = """localStorage.removeItem('expires_at');
+       localStorage.removeItem('access_token');"""
     context.browser.execute_script(script)
     open_application(context)
     pass
