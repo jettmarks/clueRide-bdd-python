@@ -35,6 +35,7 @@ Feature: Register an un-registered App
      Then I see the "Confirm Email" page
       And I see the "Use this Email" button
       And I see the "Choose different Email" button
+      And I see the registered address "@clueride.com"
 
   Scenario: Register and Confirm leads to Home page
     Given Application has been opened
@@ -46,6 +47,7 @@ Feature: Register an un-registered App
       And I click the "Use this Email" button
       And I wait "1" seconds
      Then I see the "Home" page
+      And I see Registered as Test Account
 
   Scenario: Register and Choose different Email
     Given Application has been opened
