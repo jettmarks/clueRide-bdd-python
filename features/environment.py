@@ -1,8 +1,9 @@
+import time
 from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
 
 
-def before_all(context):
+def before_feature(context, feature):
     LOG_PATH = "/tmp/selenium-chrome.log"
 
     # caps = DesiredCapabilities.CHROME
@@ -14,6 +15,7 @@ def before_all(context):
             # desired_capabilities=caps,
             service_args=["--verbose", "--log-path=" + LOG_PATH]
         )
+        time.sleep(1)
     except WebDriverException:
         print("Unable to start browser, is log-path (", LOG_PATH, ") available?")
         raise
@@ -22,5 +24,11 @@ def before_all(context):
         raise
 
 
-def after_all(context):
+def before_step(context, step):
+    """Opportunity to set a breakpoint"""
+    print(step)
+
+
+def after_feature(context, feature):
     context.browser.quit()
+
