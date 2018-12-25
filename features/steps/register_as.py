@@ -25,12 +25,13 @@ def step_impl(context, email_text):
     :param email_text: String representing the email address to match
     """
     try:
-        email_span = context.browser.find_element_by_tag_name("span")
+        email_span = context.browser.find_elements_by_xpath("//page-confirm//ion-content//span")
     except NoSuchElementException:
         assert False, "Unable to find Span with email address"
 
-    print(email_span.get_attribute("value"))
-    assert email_span.get_attribute("value") is not None, "Email address not populated"
-    assert email_text in email_span, "Email Address (" + email_span + ") doesn't match expected value (" + email_text + ")"
+    print('Found this many span elements: ', len(email_span), '\n')
+    print(email_span[0].text, '\n')
+    assert email_span[0].text is not None, "Email address not populated"
+    assert email_text in email_span[0].text, "Email Address (" + email_span[0].text + ") doesn't match expected value (" + email_text + ")"
 
     pass

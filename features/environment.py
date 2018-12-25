@@ -26,7 +26,7 @@ def before_feature(context, feature):
 
 def before_step(context, step):
     """Opportunity to set a breakpoint"""
-    print(step)
+    print(step, "\n")
 
 
 def after_feature(context, feature):

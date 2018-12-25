@@ -35,7 +35,7 @@ Feature: Register an un-registered App
      Then I see the "Confirm Email" page
       And I see the "Use this Email" button
       And I see the "Choose different Email" button
-      And I see the registered address "@clueride.com"
+      And I see the registered address "bikeangel"
 
   Scenario: Register and Confirm leads to Home page
     Given Application has been opened
