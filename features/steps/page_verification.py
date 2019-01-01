@@ -55,7 +55,7 @@ def step_impl(context, badge_name):
         print("No element found")
 
 
-@when('I wait for page with "{id_text}" ID')
+@step('I wait for page with "{id_text}" ID')
 def step_impl(context, id_text):
     """
     :param id_text: Text of the ID element expected.

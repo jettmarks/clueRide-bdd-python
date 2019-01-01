@@ -15,7 +15,6 @@ def step_impl(context):
         assert False, "Unable to find User's Registered Name"
 
     assert len(name_element_list) == 1, "Wrong number of Registered Names"
-    pass
 
 
 @step('I see the registered address "{email_text}"')
@@ -34,4 +33,3 @@ def step_impl(context, email_text):
     assert email_span[0].text is not None, "Email address not populated"
     assert email_text in email_span[0].text, "Email Address (" + email_span[0].text + ") doesn't match expected value (" + email_text + ")"
 
-    pass
