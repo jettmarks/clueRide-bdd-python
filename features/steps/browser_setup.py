@@ -1,3 +1,5 @@
+import time
+
 from behave import *
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -65,3 +67,45 @@ def step_impl(context):
     open_application(context)
     script = """localStorage.setItem('expires_at',JSON.stringify((86400 * 1000) + new Date().getTime()));"""
     context.browser.execute_script(script)
+
+
+def assemble_token_script(user_key):
+    token_map = {
+        'invitedUser': "invitedUser",
+        'declinedUser': "declinedUser",
+        'acceptedInviteUser': "acceptedInviteUser",
+        'noInviteUser': "noInviteUser",
+        'multiInviteUser': "multiInviteUser",
+    }
+
+    return """localStorage.setItem(
+      'access_token', 
+      JSON.stringify('""" \
+           + token_map.get(user_key, "unknownUser") \
+           +"""')
+    );"""
+
+
+def reload(context):
+    script = """location.reload();"""
+    context.browser.execute_script(script)
+
+
+@given('Device registered to "{user_key}"')
+def step_impl(context, user_key):
+    """
+    :type context: behave.runner.Context
+    :param user_key: str representing the key for a specific user's account.
+    """
+    open_application(context)
+    time.sleep(int(1))
+    script = assemble_token_script(user_key)
+    context.browser.execute_script(script)
+    time.sleep(int(1))
+    # reload appears to be working better than the open_application
+    # open_application(context)
+    reload(context)
+    time.sleep(int(2))
+
+
+
